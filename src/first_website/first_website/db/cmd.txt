@@ -5,3 +5,5 @@ $ from first_website.nodels import User, Post
 db.create_all()
 User.query.all()
 
+user = User.query.first()
+

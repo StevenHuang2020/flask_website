@@ -11,10 +11,10 @@ Start server with flask cmd:
 3. $ flask run
 
 Start server with Python:
-$ python main.py
+$ python run.py
 
 Reference courses:
-https://www.youtube.com/watch?v=UIJKdCIEXUQ&list=PL-osiE80TeTs4UjLw5MM6OjgkjFeUxCYH&index=5
+https://www.youtube.com/watch?v=803Ei2Sq-Zs&list=PL-osiE80TeTs4UjLw5MM6OjgkjFeUxCYH&index=7
 """
 
 from first_website import app
