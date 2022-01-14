@@ -1,0 +1,7 @@
+$python
+$ from first_website import db
+$ from first_website.nodels import User, Post
+
+db.create_all()
+User.query.all()
+
