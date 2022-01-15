@@ -50,6 +50,7 @@ class UpdateAccountForm(FlaskForm):
     picture = FileField('Update profile picture',
                         validators=[FileAllowed(['jpg', 'png'])])
     submit = SubmitField('Update')
+    delete_account = SubmitField('Delete')
 
     def validate_username(self, username):
         if username.data != current_user.username:
@@ -70,3 +71,19 @@ class PostForm(FlaskForm):
                             render_kw={'class': 'form-control', 'rows': 5})
     submit = SubmitField('Post')
 
+
+class RequestResetForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    submit = SubmitField('Request Password Reset')
+
+    def validate_email(self, email):
+        user = User.query.filter_by(email=email.data).first()
+        if user is None:
+            raise ValidationError('There is no account with this email is taken. You must register first.')
+
+
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField('Password', validators=[DataRequired()])
+    confirm_psw = PasswordField('Confirm Password',
+                                validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Reset Password')
