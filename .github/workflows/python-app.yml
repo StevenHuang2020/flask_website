@@ -33,9 +33,9 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: init database
       run: |
-        python install.py
+        python src/install.py
   
     - name: Start web server
       run: |
-        python run.py
+        python src/run.py
   
