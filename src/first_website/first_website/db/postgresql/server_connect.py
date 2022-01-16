@@ -2,6 +2,7 @@ from configparser import ConfigParser
 import psycopg2
 from psycopg2.extensions import connection,cursor
 
+
 def config(filename='database.ini', section='postgresql'):
     """get config from ini file"""
     parser = ConfigParser()
@@ -16,8 +17,8 @@ def config(filename='database.ini', section='postgresql'):
             db[param[0]] = param[1]
     else:
         raise Exception('Section {0} not found in the {1} file'.format(section, filename))
-
     return db
+
 
 class PsqlConnect():
     """PostgreSQL connect class"""
@@ -28,8 +29,8 @@ class PsqlConnect():
     def __init__(self):
         try:
             print('Connecting to the PostgreSQL...........')
-            #self.conn = psycopg2.connect("dbname=postgres user=postgres password=123")
-            #self.conn = psycopg2.connect(host="localhost", database="postgres", user="postgres", password="123")
+            # self.conn = psycopg2.connect("dbname=postgres user=postgres password=123")
+            # self.conn = psycopg2.connect(host="localhost", database="postgres", user="postgres", password="123")
             self.conn = psycopg2.connect(**config())
 
             # create a cursor
@@ -52,5 +53,5 @@ class PsqlConnect():
         self.cur.execute(sql)
         self.conn.commit()
         if query:
-            return self.cur.fetchall() #fetchone() fetchall()
+            return self.cur.fetchall()  # fetchone() fetchall()
         return None

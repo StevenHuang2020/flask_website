@@ -5,36 +5,38 @@
 """
 Description: start
 """
-import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_mail import Mail
+from first_website.config import Config
 
-app = Flask(__name__)
 
-# secrets.token_hex(16)
-app.config['SECRET_KEY'] = 'e7c794326ea87a59b2cf616809e1efcd'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db/sqlite/website.db'
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:123@localhost/my_website'
-
-db = SQLAlchemy(app)
-bcrypt = Bcrypt(app)
-login_manager = LoginManager(app)
-login_manager.login_view = 'login'
+db = SQLAlchemy()
+bcrypt = Bcrypt()
+login_manager = LoginManager()
+login_manager.login_view = 'users.login'
 login_manager.login_message_category = 'info'
 
-
-app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = os.environ.get('EMAIL_USER')
-app.config['MAIL_PASSWORD'] = os.environ.get('EMAIL_PASSWORD')
-
-# print('MAIL_USERNAME, MAIL_PASSWORD = ',
-#       app.config['MAIL_USERNAME'], app.config['MAIL_PASSWORD'])
-mail = Mail(app)
+mail = Mail()
 
 
-from first_website import routes
+def create_app(config_class=Config):
+    app = Flask(__name__)
+    app.config.from_object(config_class)
+
+    db.init_app(app)
+    bcrypt.init_app(app)
+    login_manager.init_app(app)
+    mail.init_app(app)
+
+    # from first_website import routes
+    from first_website.main.routes import main
+    from first_website.users.routes import users
+    from first_website.posts.routes import posts
+    app.register_blueprint(main)
+    app.register_blueprint(users)
+    app.register_blueprint(posts)
+
+    return app
