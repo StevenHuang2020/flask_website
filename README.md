@@ -1,6 +1,5 @@
-# flask website
-A exapmle of blog website developed by [Flask](https://flask.palletsprojects.com/en/2.0.x/).
-
+# Flask website
+A exapmle of blog website developed based on [Flask](https://flask.palletsprojects.com/en/2.0.x/). This example website includes functions like user login/logout/register, publish/update/delete post, customize error pages, etc.
 
 ### Usage
 1. Install requirement libraries </br>
@@ -11,5 +10,4 @@ A exapmle of blog website developed by [Flask](https://flask.palletsprojects.com
 ```$ python run.py```
 
 ### Sceenshots
-
-
+<img src="src/first_website/first_website/db/website.png" width="80%" height="80%">
