@@ -9,6 +9,7 @@ from first_website.users.utils import save_picture, send_reset_email
 
 users = Blueprint('users', __name__)
 
+
 @users.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
@@ -54,6 +55,7 @@ def logout():
     logout_user()
     return redirect(url_for('main.home'))
 
+
 @users.route('/account', methods=['GET', 'POST'])
 @login_required
 def account():
@@ -84,6 +86,7 @@ def account():
 
     image_file = url_for('static', filename='profile_imgs/' + current_user.image_file)
     return render_template('account.html', title='Account', image_file=image_file, form=form)
+
 
 @users.route('/user/<string:username>')
 def user_posts(username):
@@ -126,4 +129,3 @@ def reset_token(token):
         flash('Your password have been updated! You are now able to login!', 'success')
         return redirect(url_for('users.login'))
     return render_template('reset_token.html', title='Reset Password', form=form)
-

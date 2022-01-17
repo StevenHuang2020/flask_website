@@ -7,6 +7,7 @@ from first_website import db
 
 posts = Blueprint('posts', __name__)
 
+
 @posts.route('/post/new',  methods=['GET', 'POST'])
 @login_required
 def new_post():

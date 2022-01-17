@@ -12,10 +12,11 @@ Database configuration(__init__.py):
 app.config['SQLALCHEMY_DATABASE_URI'] = ''
 """
 
-import os
+# import os
 from first_website.models import User, Post
 from first_website import create_app
 from first_website import db, bcrypt
+
 
 def main():
     app = create_app()

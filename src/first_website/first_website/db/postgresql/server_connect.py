@@ -1,6 +1,6 @@
 from configparser import ConfigParser
 import psycopg2
-from psycopg2.extensions import connection,cursor
+from psycopg2.extensions import connection, cursor
 
 
 def config(filename='database.ini', section='postgresql'):

@@ -4,6 +4,7 @@ from first_website.models import Post
 
 main = Blueprint('main', __name__)
 
+
 @main.route('/')
 @main.route('/home')
 def home():

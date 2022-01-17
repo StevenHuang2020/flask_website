@@ -5,6 +5,7 @@ from flask_mail import Message
 from flask import url_for, current_app
 from first_website import mail
 
+
 def save_picture(form_picture):
     random_hex = secrets.token_hex(8)
     _, f_ext = os.path.splitext(form_picture.filename)

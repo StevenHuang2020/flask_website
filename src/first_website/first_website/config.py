@@ -7,8 +7,9 @@ Description: Web Configuration class
 """
 import os
 
+
 class Config:
-    SECRET_KEY= 'e7c794326ea87a59b2cf616809e1efcd'  # secrets.token_hex(16)
+    SECRET_KEY = 'e7c794326ea87a59b2cf616809e1efcd'  # secrets.token_hex(16)
     SQLALCHEMY_DATABASE_URI = 'sqlite:///db/sqlite/website.db'
     # SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:123@localhost/my_website'
     MAIL_SERVER = 'smtp.googlemail.com'
